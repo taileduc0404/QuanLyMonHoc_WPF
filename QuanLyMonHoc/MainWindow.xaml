@@ -1,0 +1,112 @@
+﻿<Window x:Class="QuanLyMonHoc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyMonHoc"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <StackPanel>
+        <Label Content="Quản lý môn học"
+               FontWeight="Bold"
+               HorizontalAlignment="Center"
+               FontSize="24"
+               />
+        <Grid x:Name="gridMonHoc" DataContext="{StaticResource rsMonHoc}">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!--textblock-->
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số môn học" Margin="3"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Tên môn học" Margin="3"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Số tiết" Margin="3"/>
+            
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số môn học" Margin="3"/>
+            
+            <!--textbox-->
+            <TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Msmh}"/>
+            <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3"  Text="{Binding Tenmh}"/>
+            <TextBox x:Name="Sotiet_txt" Grid.Row="2" Grid.Column="2" Margin="3"  Text="{Binding Sotiet}"/>
+            
+
+                <!--Button-->
+            <Button Grid.Row="0" Grid.Column="4" Content="Thêm" Height="24" Grid.RowSpan="2" VerticalAlignment="Top" Click="Button_Click"/>
+        </Grid>
+
+        <Label Content="Danh sách môn học"
+               FontSize="16"
+               FontWeight="Bold"
+               HorizontalAlignment="Center"
+               Margin="5,5"/>
+        <DataGrid x:Name="dg" Margin="5,5" AutoGenerateColumns="False" SelectedValuePath="Msmh" LoadingRowDetails="dg_LoadingRowDetails">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã môn học" Binding="{Binding Msmh}"/>
+                <DataGridTextColumn Header="Tên môn học" Binding="{Binding Tenmh}"/>
+                <DataGridTextColumn Header="Số tiết" Binding="{Binding Sotiet}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Xóa" x:Name="btnXoa" Click="btnXoa_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Expander>
+                        <StackPanel>
+                            <Grid x:Name="gridMonHoc" DataContext="{StaticResource rsMonHoc}">
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <!--textblock-->
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số môn học" Margin="3"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="Tên môn học" Margin="3"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Số tiết" Margin="3"/>
+
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số môn học" Margin="3"/>
+
+                                <!--textbox-->
+                                <!--<TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Msmh}"/>-->
+                                <TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Msmh}"/>
+                                <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3"  Text="{Binding Tenmh}"/>
+                                <TextBox x:Name="Sotiet_txt" Grid.Row="2" Grid.Column="2" Margin="3"  Text="{Binding Sotiet}"/>
+
+
+                                <!--Button-->
+                                <Button Grid.Row="0" Grid.Column="4" Content="Sửa" Height="24" Grid.RowSpan="2" VerticalAlignment="Top" Click="Sua_Click"/>
+                            </Grid>
+                        </StackPanel>
+                    </Expander>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+    </StackPanel>
+</Window>
