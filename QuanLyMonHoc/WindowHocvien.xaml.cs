@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyMonHoc.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,26 @@ namespace QuanLyMonHoc
         public WindowHocvien()
         {
             InitializeComponent();
+            //hienthi();
+        }
+
+        qlhvContext context = new qlhvContext();
+        private void hienthi()
+        {
+            dg.ItemsSource = context.Lyliches.Select(x => new
+            {
+                Mshv = x.Mshv,
+                Tenhv = x.Tenhv,
+                Ngaysinh = x.Ngaysinh,
+                Malop = x.Malop,
+                Lop = x.MalopNavigation,
+                Phai = x.Phai
+            }).ToList();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            hienthi();
         }
     }
 }

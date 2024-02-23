@@ -5,8 +5,84 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyMonHoc"
         mc:Ignorable="d"
-        Title="WindowHocvien" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="WindowHocvien" Height="450" Width="800" Loaded="Window_Loaded">
+    <StackPanel>
+        <Label Content="Quản lý học viên"
+               FontWeight="Bold"
+               HorizontalAlignment="Center"
+               FontSize="24"
+               />
+        <Grid x:Name="gridHocvien">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--textblock-->
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số học viên" Margin="3"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Tên học viên" Margin="3"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Ngày sinh" Margin="3"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="Mã lớp" Margin="3"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="Tên lớp" Margin="3"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="Giới tính" Margin="3"/>
+
+            <!--textbox-->
+            <TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Mshv}"/>
+            <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3"  Text="{Binding Tenmh}"/>
+            <DatePicker x:Name="Ngaysinh_txt" Grid.Row="2" Grid.Column="2" Margin="3" Text="{Binding }"/>
+            <TextBox x:Name="Malop_txt" Grid.Row="3" Grid.Column="2" Margin="3"/>
+            <TextBox x:Name="Tenlop_txt"  Grid.Row="4" Grid.Column="2" Margin="3"/>
+            <ComboBox x:Name="Gioitinh_txt" Grid.Row="5" Grid.Column="2" Margin="3"/>
+
+
+            <!--Button-->
+            <Button Grid.Row="0" Grid.Column="4" Content="Thêm" Height="24" Grid.RowSpan="2" VerticalAlignment="Top"/>
+        </Grid>
+        <Label Content="Danh sách học viên"
+               FontSize="16"
+               FontWeight="Bold"
+               HorizontalAlignment="Center"
+               Margin="5,5"/>
+        <DataGrid x:Name="dg" Margin="5,5" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã học viên"  Binding="{Binding Mshv}"      />
+                <DataGridTextColumn Header="Tên học viên" Binding="{Binding Tenhv}"    />
+                <DataGridTextColumn Header="Ngày sinh"    Binding="{Binding Ngaysinh}"  />
+                <DataGridTextColumn Header="Mã lớp"       Binding="{Binding Malop}"      />
+                <DataGridTextColumn Header="Tên lớp"      Binding="{Binding Malop}"      />
+                <DataGridTextColumn Header="Giới tính"    Binding="{Binding Phai}"           />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Xóa" x:Name="btnXoa"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Expander>
+                        <StackPanel>
+
+                        </StackPanel>
+                    </Expander>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+    </StackPanel>
 </Window>
