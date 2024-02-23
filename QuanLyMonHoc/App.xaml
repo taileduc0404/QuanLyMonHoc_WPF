@@ -3,8 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:QuanLyMonHoc"
              xmlns:localModel="clr-namespace:QuanLyMonHoc.ViewModels"
+             
+             xmlns:localModels="clr-namespace:QuanLyMonHoc.Models"
              StartupUri="WindowChinh.xaml">
     <Application.Resources>
         <localModel:MonHocVM x:Key="rsMonHoc"/>
+        <localModel:HocvienVM x:Key="rsHocvien"/>
+        <x:Array x:Key="rsPhai" Type="localModels:Phai">
+            <localModels:Phai key="True" value="Nam"/>
+            <localModels:Phai key="False" value="Nữ"/>
+        </x:Array>
     </Application.Resources>
 </Application>

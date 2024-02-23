@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyMonHoc.ViewModels
+namespace QuanLyMonHoc.Models
 {
-    public class SuaVM
-    {
-    }
+	public class Phai
+	{
+		public bool key { get; set; }
+		public string? value { get; set; }
+	}
 }

@@ -12,7 +12,7 @@
                HorizontalAlignment="Center"
                FontSize="24"
                />
-        <Grid x:Name="gridHocvien">
+        <Grid x:Name="gridHocvien" DataContext="{StaticResource rsHocvien}">
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition/>
@@ -42,11 +42,13 @@
 
             <!--textbox-->
             <TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Mshv}"/>
-            <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3"  Text="{Binding Tenmh}"/>
-            <DatePicker x:Name="Ngaysinh_txt" Grid.Row="2" Grid.Column="2" Margin="3" Text="{Binding }"/>
-            <TextBox x:Name="Malop_txt" Grid.Row="3" Grid.Column="2" Margin="3"/>
-            <TextBox x:Name="Tenlop_txt"  Grid.Row="4" Grid.Column="2" Margin="3"/>
-            <ComboBox x:Name="Gioitinh_txt" Grid.Row="5" Grid.Column="2" Margin="3"/>
+            <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3"  Text="{Binding Tenhv}"/>
+            <DatePicker x:Name="Ngaysinh_txt" Grid.Row="2" Grid.Column="2" Margin="3" Text="{Binding  Ngaysinh}"/>
+            <ComboBox x:Name="Malop_cb" Grid.Row="3" Grid.Column="2" Margin="3" Text="{Binding Malop}"
+                      SelectedValuePath="Malop" DisplayMemberPath="Malop"/>
+            <TextBox x:Name="Tenlop_txt"  Grid.Row="4" Grid.Column="2" Margin="3" Text="{Binding ElementName=Malop_cb, Path=SelectedItem.Tenlop}"/>
+            <ComboBox x:Name="Phai_cb" Grid.Row="5" Grid.Column="2" Margin="3" ItemsSource="{StaticResource rsPhai}"
+                      SelectedValuePath="key" DisplayMemberPath="value"/>
 
 
             <!--Button-->

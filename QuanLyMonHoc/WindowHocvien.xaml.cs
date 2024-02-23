@@ -15,34 +15,35 @@ using System.Windows.Shapes;
 
 namespace QuanLyMonHoc
 {
-    /// <summary>
-    /// Interaction logic for WindowHocvien.xaml
-    /// </summary>
-    public partial class WindowHocvien : Window
-    {
-        public WindowHocvien()
-        {
-            InitializeComponent();
-            //hienthi();
-        }
+	/// <summary>
+	/// Interaction logic for WindowHocvien.xaml
+	/// </summary>
+	public partial class WindowHocvien : Window
+	{
+		public WindowHocvien()
+		{
+			InitializeComponent();
+			//hienthi();
+		}
 
-        qlhvContext context = new qlhvContext();
-        private void hienthi()
-        {
-            dg.ItemsSource = context.Lyliches.Select(x => new
-            {
-                Mshv = x.Mshv,
-                Tenhv = x.Tenhv,
-                Ngaysinh = x.Ngaysinh,
-                Malop = x.Malop,
-                Lop = x.MalopNavigation,
-                Phai = x.Phai
-            }).ToList();
-        }
+		qlhvContext context = new qlhvContext();
+		private void hienthi()
+		{
+			dg.ItemsSource = context.Lyliches.Select(x => new
+			{
+				Mshv = x.Mshv,
+				Tenhv = x.Tenhv,
+				Ngaysinh = x.Ngaysinh,
+				Malop = x.Malop,
+				Lop = x.MalopNavigation,
+				Phai = (x.Phai == true ? "Nam" : "Nữ")
+			}).ToList();
+		}
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            hienthi();
-        }
-    }
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			Malop_cb.ItemsSource = context.Lops.ToList();
+			hienthi();
+		}
+	}
 }
