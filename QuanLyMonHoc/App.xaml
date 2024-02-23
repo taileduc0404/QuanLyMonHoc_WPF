@@ -9,9 +9,9 @@
     <Application.Resources>
         <localModel:MonHocVM x:Key="rsMonHoc"/>
         <localModel:HocvienVM x:Key="rsHocvien"/>
-        <x:Array x:Key="rsPhai" Type="localModels:Phai">
-            <localModels:Phai key="True" value="Nam"/>
-            <localModels:Phai key="False" value="Nữ"/>
+        <x:Array x:Key="rsPhai" Type="localModels:Phais">
+            <localModels:Phais key="True" value="Nam"/>
+            <localModels:Phais key="False" value="Nữ"/>
         </x:Array>
     </Application.Resources>
 </Application>

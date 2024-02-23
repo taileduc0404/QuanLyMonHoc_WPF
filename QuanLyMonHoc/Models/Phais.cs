@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace QuanLyMonHoc.Models
 {
-	public class Phai
+	public class Phais
 	{
 		public bool key { get; set; }
-		public string? value { get; set; }
+		public string value { get; set; }
 	}
 }

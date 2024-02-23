@@ -1,4 +1,5 @@
 ﻿using QuanLyMonHoc.Models;
+using QuanLyMonHoc.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace QuanLyMonHoc
 		public WindowHocvien()
 		{
 			InitializeComponent();
-			//hienthi();
+			hienthi();
 		}
 
 		qlhvContext context = new qlhvContext();
@@ -44,6 +45,26 @@ namespace QuanLyMonHoc
 		{
 			Malop_cb.ItemsSource = context.Lops.ToList();
 			hienthi();
+		}
+
+		private void btnThem_Click(object sender, RoutedEventArgs e)
+		{
+			HocvienVM vm = gridHocvien.DataContext as HocvienVM;
+
+			if (vm != null)
+			{
+				Lylich ll = new Lylich
+				{
+					Mshv = vm.Mshv,
+					Tenhv = vm.Tenhv,
+					Phai = bool.Parse(vm.Phai),
+					Malop = vm.Malop,
+					Ngaysinh = DateTime.Parse(vm.Ngaysinh),
+				};
+				context.Lyliches.Add(ll);
+				context.SaveChanges();
+				hienthi();
+			}
 		}
 	}
 }

@@ -43,16 +43,16 @@
             <!--textbox-->
             <TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Mshv}"/>
             <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3"  Text="{Binding Tenhv}"/>
-            <DatePicker x:Name="Ngaysinh_txt" Grid.Row="2" Grid.Column="2" Margin="3" Text="{Binding  Ngaysinh}"/>
+            <DatePicker x:Name="Ngaysinh_txt" Grid.Row="2" Grid.Column="2" Margin="3" SelectedDate="{Binding  Ngaysinh}"/>
             <ComboBox x:Name="Malop_cb" Grid.Row="3" Grid.Column="2" Margin="3" Text="{Binding Malop}"
-                      SelectedValuePath="Malop" DisplayMemberPath="Malop"/>
+                      SelectedValuePath="Malop" DisplayMemberPath="Malop" SelectedValue="{Binding Malop}"/>
             <TextBox x:Name="Tenlop_txt"  Grid.Row="4" Grid.Column="2" Margin="3" Text="{Binding ElementName=Malop_cb, Path=SelectedItem.Tenlop}"/>
             <ComboBox x:Name="Phai_cb" Grid.Row="5" Grid.Column="2" Margin="3" ItemsSource="{StaticResource rsPhai}"
-                      SelectedValuePath="key" DisplayMemberPath="value"/>
+                      SelectedValuePath="key" DisplayMemberPath="value" SelectedValue="{Binding Phai}" />
 
 
             <!--Button-->
-            <Button Grid.Row="0" Grid.Column="4" Content="Thêm" Height="24" Grid.RowSpan="2" VerticalAlignment="Top"/>
+            <Button Grid.Row="0" Grid.Column="4" Content="Thêm" Height="24" Grid.RowSpan="2" VerticalAlignment="Top" Click="btnThem_Click"/>
         </Grid>
         <Label Content="Danh sách học viên"
                FontSize="16"
