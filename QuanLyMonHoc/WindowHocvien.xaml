@@ -59,7 +59,7 @@
                FontWeight="Bold"
                HorizontalAlignment="Center"
                Margin="5,5"/>
-        <DataGrid x:Name="dg" Margin="5,5" AutoGenerateColumns="False">
+        <DataGrid x:Name="dg" Margin="5,5" SelectedValuePath="Mshv" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã học viên"  Binding="{Binding Mshv}"      />
                 <DataGridTextColumn Header="Tên học viên" Binding="{Binding Tenhv}"    />
@@ -70,13 +70,13 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Xóa" x:Name="btnXoa"/>
+                            <Button Content="Xóa" x:Name="btnXoa" Click="Xoabtn_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
+            <!--<DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <Expander>
                         <StackPanel>
@@ -84,7 +84,7 @@
                         </StackPanel>
                     </Expander>
                 </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
+            </DataGrid.RowDetailsTemplate>-->
         </DataGrid>
     </StackPanel>
 </Window>

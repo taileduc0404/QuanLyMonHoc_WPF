@@ -66,5 +66,31 @@ namespace QuanLyMonHoc
 				hienthi();
 			}
 		}
+
+		private void Xoabtn_Click(object sender, RoutedEventArgs e)
+		{
+
+			
+			var selectedItem = dg.SelectedItem;
+
+			if (selectedItem != null)
+			{
+				
+				var selectedHocvien = (selectedItem as dynamic);
+
+				
+				string mshv = selectedHocvien.Mshv;
+
+				
+				var hocvien = context.Lyliches.Find(mshv);
+
+				if (hocvien != null)
+				{
+					context.Lyliches.Remove(hocvien);
+					context.SaveChanges();
+					hienthi();
+				}
+			}
+		}
 	}
 }
