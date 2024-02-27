@@ -14,7 +14,6 @@
                />
         <Grid x:Name="gridHocvien" DataContext="{StaticResource rsHocvien}">
             <Grid.ColumnDefinitions>
-
                 <ColumnDefinition/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="5*"/>
@@ -59,7 +58,7 @@
                FontWeight="Bold"
                HorizontalAlignment="Center"
                Margin="5,5"/>
-        <DataGrid x:Name="dg" Margin="5,5" SelectedValuePath="Mshv" AutoGenerateColumns="False">
+        <DataGrid x:Name="dg" Margin="5,5" SelectedValuePath="Mshv" AutoGenerateColumns="False" LoadingRowDetails="dg_Loading">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã học viên"  Binding="{Binding Mshv}"      />
                 <DataGridTextColumn Header="Tên học viên" Binding="{Binding Tenhv}"    />
@@ -76,15 +75,65 @@
 
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-            <!--<DataGrid.RowDetailsTemplate>
+            <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <Expander>
                         <StackPanel>
+                            <Grid x:Name="gridHocVien" DataContext="{StaticResource rsHocvien}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
 
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <!--textblock-->
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số học viên" Margin="3"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="Tên học viên" Margin="3"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Ngày sinh" Margin="3"/>
+                                <TextBlock Grid.Row="3" Grid.Column="1" Text="Mã lớp" Margin="3"/>
+                                <TextBlock Grid.Row="4" Grid.Column="1" Text="Tên lớp" Margin="3"/>
+                                <TextBlock Grid.Row="5" Grid.Column="1" Text="Giới tính" Margin="3"/>
+
+                                <!--textbox-->
+                                <!--<TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Mshv}"/>
+                                <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3"  Text="{Binding Tenhv}"/>
+                                <DatePicker x:Name="Ngaysinh_txt" Grid.Row="2" Grid.Column="2" Margin="3" SelectedDate="{Binding  Ngaysinh}"/>
+                                <ComboBox x:Name="Malop_cb" Grid.Row="3" Grid.Column="2" Margin="3" Text="{Binding Malop}"
+                      SelectedValuePath="Malop" DisplayMemberPath="Malop" SelectedValue="{Binding Malop}"/>
+                                <TextBox x:Name="Tenlop_txt"  Grid.Row="4" Grid.Column="2" Margin="3" Text="{Binding ElementName=Malop_cb, Path=SelectedItem.Tenlop}"/>
+                                <ComboBox x:Name="Phai_cb" Grid.Row="5" Grid.Column="2" Margin="3" ItemsSource="{StaticResource rsPhai}"
+                      SelectedValuePath="key" DisplayMemberPath="value" SelectedValue="{Binding Phai}" />-->
+
+                                <TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Mshv, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3" Text="{Binding Tenhv, UpdateSourceTrigger=PropertyChanged}"/>
+                                <DatePicker x:Name="Ngaysinh_txt" Grid.Row="2" Grid.Column="2" Margin="3" SelectedDate="{Binding Ngaysinh, UpdateSourceTrigger=PropertyChanged}"/>
+                                <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" Margin="3">
+                                    <TextBlock Text="Mã lớp" Margin="0,0,5,0"/>
+                                    <ComboBox x:Name="Malop_cb" Text="{Binding Malop, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Malop" DisplayMemberPath="Malop" SelectedValue="{Binding Malop}" />
+                                    <TextBlock Text="{Binding ElementName=Malop_cb, Path=SelectedItem.Tenlop}" Margin="5,0,0,0"/>
+                                </StackPanel>
+                                <ComboBox x:Name="Phai_cb" Grid.Row="5" Grid.Column="2" Margin="3" ItemsSource="{StaticResource rsPhai}" SelectedValuePath="key" DisplayMemberPath="value" SelectedValue="{Binding Phai}"/>
+
+
+                                <!--Button-->
+                                <Button Grid.Row="0" Grid.Column="4" Content="Sửa" Height="24" Grid.RowSpan="2" VerticalAlignment="Top" Click="SuaBtn_Click"/>
+                            </Grid>
                         </StackPanel>
                     </Expander>
                 </DataTemplate>
-            </DataGrid.RowDetailsTemplate>-->
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
     </StackPanel>
 </Window>

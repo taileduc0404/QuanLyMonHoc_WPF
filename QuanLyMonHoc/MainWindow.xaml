@@ -33,9 +33,7 @@
             <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số môn học" Margin="3"/>
             <TextBlock Grid.Row="1" Grid.Column="1" Text="Tên môn học" Margin="3"/>
             <TextBlock Grid.Row="2" Grid.Column="1" Text="Số tiết" Margin="3"/>
-            
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số môn học" Margin="3"/>
-            
+
             <!--textbox-->
             <TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Msmh}"/>
             <TextBox x:Name="Ten_txt" Grid.Row="1" Grid.Column="2" Margin="3"  Text="{Binding Tenmh}"/>
@@ -90,8 +88,6 @@
                                 <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số môn học" Margin="3"/>
                                 <TextBlock Grid.Row="1" Grid.Column="1" Text="Tên môn học" Margin="3"/>
                                 <TextBlock Grid.Row="2" Grid.Column="1" Text="Số tiết" Margin="3"/>
-
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Mã số môn học" Margin="3"/>
 
                                 <!--textbox-->
                                 <!--<TextBox x:Name="Ma_txt" Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Msmh}"/>-->

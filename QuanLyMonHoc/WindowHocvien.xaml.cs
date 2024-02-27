@@ -70,7 +70,15 @@ namespace QuanLyMonHoc
 		private void Xoabtn_Click(object sender, RoutedEventArgs e)
 		{
 
-			
+			//Lylich ll = dg.SelectedItem as Lylich;
+			//var hocvien = context.Lyliches.Find(ll);
+			//if (hocvien != null)
+			//{
+			//	context.Lyliches.Remove(hocvien);
+			//	context.SaveChanges();
+			//	hienthi() ;
+			//}
+
 			var selectedItem = dg.SelectedItem;
 
 			if (selectedItem != null)
@@ -89,6 +97,67 @@ namespace QuanLyMonHoc
 					context.Lyliches.Remove(hocvien);
 					context.SaveChanges();
 					hienthi();
+				}
+			}
+		}
+
+		private void SuaBtn_Click(object sender, RoutedEventArgs e)
+		{
+			Button btn = sender as Button;
+			Grid gr = btn.Parent as Grid;
+
+
+			HocvienVM vm = gr.DataContext as HocvienVM;
+
+			Lylich hocVienFind = context.Lyliches.Find(vm.Mshv);
+
+			if (hocVienFind != null)
+			{
+
+				hocVienFind.Tenhv = vm.Tenhv;
+				hocVienFind.Ngaysinh = DateTime.Parse(vm.Ngaysinh);
+				hocVienFind.Phai = bool.Parse(vm.Phai);
+				hocVienFind.Malop = vm.Malop;
+		
+				context.Lyliches.Update(hocVienFind);
+				context.SaveChanges();
+				hienthi();
+			}
+		}
+
+		private void dg_Loading(object sender, DataGridRowDetailsEventArgs e)
+		{
+			dynamic hocvien = e.Row.Item;
+			Lylich lylich = context.Lyliches.Find(hocvien.Mshv);
+
+			// Thiết lập DataContext cho Grid trong RowDetailsTemplate
+			Grid gridHocVien = e.DetailsElement.FindName("gridHocVien") as Grid;
+			if (gridHocVien != null)
+			{
+				// Kiểm tra xem đối tượng lylich có khác null không
+				if (lylich != null)
+				{
+					// Gán dữ liệu cho vm chỉ khi lylich khác null
+					HocvienVM vm = new HocvienVM
+					{
+						Mshv = lylich.Mshv,
+						Tenhv = lylich.Tenhv,
+						Ngaysinh = lylich.Ngaysinh.ToString(), // Sử dụng định dạng mặc định
+						Phai = lylich.Phai.ToString(),
+						Malop = lylich.Malop,
+						Tenlop = lylich.MalopNavigation?.Tenlop // Kiểm tra MalopNavigation có khác null không
+					};
+
+					// Thiết lập DataContext cho Grid
+					gridHocVien.DataContext = vm;
+
+					// Thiết lập DataContext cho combobox "Malop_cb"
+					ComboBox Malop_cb = gridHocVien.FindName("Malop_cb") as ComboBox;
+					if (Malop_cb != null)
+					{
+						Malop_cb.ItemsSource = context.Lops.ToList();
+						Malop_cb.DataContext = vm;
+					}
 				}
 			}
 		}

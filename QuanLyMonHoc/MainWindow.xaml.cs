@@ -77,18 +77,12 @@ namespace QuanLyMonHoc
                     monhoc.Msmh = vm!.Msmh;
                     monhoc.Tenmh = vm.Tenmh;
                     monhoc.Sotiet = vm.Sotiet;
-                    if (IsValid())
-                    {
-                        qlhv.Monhocs.Add(monhoc);
-                        qlhv.SaveChanges();
-                        hienthi();
-                        MessageBox.Show("Thêm thành công", "Success.", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Thiếu thông tin", "Error.", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
+
+					qlhv.Monhocs.Add(monhoc);
+					qlhv.SaveChanges();
+					hienthi();
+					MessageBox.Show("Thêm thành công", "Success.", MessageBoxButton.OK, MessageBoxImage.Information);
+				}
                 catch (Exception ex)
                 {
                     throw new Exception(ex.Message);
@@ -104,23 +98,31 @@ namespace QuanLyMonHoc
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            qlhvContext db = new qlhvContext();
-            Monhoc maso = dg.SelectedItem as Monhoc;
-            var monhoc = db.Monhocs.Find(maso);
+			//qlhvContext db = new qlhvContext();
+			//Monhoc maso = dg.SelectedItem as Monhoc;
+			//var monhoc = db.Monhocs.Find(maso);
 
-            if (monhoc != null)
-            {
-                // Ensure the object is tracked
-                db.Monhocs.Remove(monhoc);
+			var selectedItem = dg.SelectedItem;
 
-                db.SaveChanges();
-                hienthi();
-            }
-            else
-            {
-                MessageBox.Show($"Không tìm thấy {maso}");
-            }
-        }
+			if (selectedItem != null)
+			{
+
+				var selectedMonhoc = (selectedItem as dynamic);
+
+
+				string msmh = selectedMonhoc.Msmh;
+
+
+				var monhocs = qlhv.Monhocs.Find(msmh);
+
+				if (monhocs != null)
+				{
+					qlhv.Monhocs.Remove(monhocs);
+					qlhv.SaveChanges();
+					hienthi();
+				}
+			}
+		}
 
         private void Sua_Click(object sender, RoutedEventArgs e)
         {
@@ -131,6 +133,7 @@ namespace QuanLyMonHoc
             MonHocVM vm = gr.DataContext as MonHocVM;
 
             Monhoc monHocFind = qlhv.Monhocs.Find(vm.Msmh);
+
             if (monHocFind != null)
             {
                 monHocFind.Msmh = vm.Msmh;
